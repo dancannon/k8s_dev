@@ -1,0 +1,10 @@
+{
+  "id": "docker-registry",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 5000,
+  "containerPort": "docker-registry",
+  "selector": { "name": "docker-registry" },
+  "labels": { "name": "docker-registry" },
+  "createExternalLoadBalancer": true
+}

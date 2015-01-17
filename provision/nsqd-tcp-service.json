@@ -1,0 +1,9 @@
+{
+  "id": "nsqd-tcp",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 14150,
+  "containerPort": 4150,
+  "protocol": "TCP",
+  "selector": { "name": "nsqd" }
+}

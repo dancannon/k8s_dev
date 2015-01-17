@@ -1,0 +1,26 @@
+{
+  "id": "nsqlookupdController",
+  "kind": "ReplicationController",
+  "apiVersion": "v1beta1",
+  "desiredState": {
+    "replicas": 1,
+    "replicaSelector": {"name": "nsqlookupd"},
+    "podTemplate": {
+      "desiredState": {
+        "manifest": {
+          "version": "v1beta1",
+          "id": "nsqlookupdController",
+          "containers": [{
+            "name": "nsqlookupd",
+            "image": "nsqio/nsqlookupd",
+            "ports": [
+              {"containerPort": 4160},
+              {"containerPort": 4161}
+            ]
+          }]
+        }
+      },
+      "labels": {"name": "nsqlookupd"}
+    }},
+    "labels": {"name": "nsqlookupd"}
+}

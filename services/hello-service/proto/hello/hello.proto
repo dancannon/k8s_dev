@@ -1,0 +1,15 @@
+package app.service.hello;
+
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+option (gogoproto.unmarshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.marshaler_all) = true;
+
+message Request {
+	optional string name = 1 [(gogoproto.nullable) = false];
+}
+
+message Response {
+	optional string message = 1 [(gogoproto.nullable) = false];
+}

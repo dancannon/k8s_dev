@@ -1,0 +1,27 @@
+{
+    "id": "docker-registry",
+    "kind": "Pod",
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "manifest": {
+            "version": "v1beta1",
+            "id": "docker-registry",
+            "containers": [{
+                "name": "docker-registry",
+                "image": "google/docker-registry",
+                "cpu": 1000,
+                "ports": [{
+                    "name": "docker-registry",
+                    "containerPort": 5000
+                }],
+                "env": [{
+                    "name": "GCS_BUCKET",
+                    "value": "dancannon-docker-registry"
+                }]
+            }]
+        }
+    },
+    "labels": {
+        "name": "docker-registry"
+    }
+}

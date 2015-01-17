@@ -1,0 +1,32 @@
+{
+    "id": "nsqadminController",
+    "kind": "ReplicationController",
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "replicas": 1,
+        "replicaSelector": {
+            "name": "nsqadmin"
+        },
+        "podTemplate": {
+            "desiredState": {
+                "manifest": {
+                    "version": "v1beta1",
+                    "id": "nsqadmin",
+                    "containers": [{
+                        "name": "nsqadmin",
+                        "image": "smreed/nsqadmin",
+                        "ports": [{
+                            "containerPort": 4171
+                        }]
+                    }]
+                }
+            },
+            "labels": {
+                "name": "nsqadmin"
+            }
+        }
+    },
+    "labels": {
+        "name": "nsqadmin"
+    }
+}

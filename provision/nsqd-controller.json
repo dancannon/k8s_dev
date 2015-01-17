@@ -1,0 +1,40 @@
+{
+    "id": "nsqdController",
+    "kind": "ReplicationController",
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "replicas": 5,
+        "replicaSelector": {
+            "name": "nsqd"
+        },
+        "podTemplate": {
+            "desiredState": {
+                "manifest": {
+                    "version": "v1beta1",
+                    "id": "nsqd",
+                    "volumes": [
+                        {"name": "nsqdpersistence"}
+                    ],
+                    "containers": [{
+                        "name": "nsqd",
+                        "image": "smreed/nsqd",
+                        "volumes": [
+                            {"name": "nsqdpersistence", "mountPath": "/data"}
+                        ],
+                        "ports": [{
+                            "containerPort": 4150
+                        }, {
+                            "containerPort": 4151
+                        }]
+                    }]
+                }
+            },
+            "labels": {
+                "name": "nsqd"
+            }
+        }
+    },
+    "labels": {
+        "name": "nsqd"
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "nsqadmin-http",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "containerPort": 4171,
+  "port": 14171,
+  "protocol": "TCP",
+  "selector": { "name": "nsqadmin" },
+  "createExternalLoadBalancer": true
+}
+

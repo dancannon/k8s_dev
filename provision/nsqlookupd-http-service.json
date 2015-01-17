@@ -1,0 +1,9 @@
+{
+  "id": "nsqlookupd-http",
+  "kind": "Service",
+  "apiVersion": "v1beta1",
+  "port": 14161,
+  "containerPort": 4161,
+  "protocol": "TCP",
+  "selector": { "name": "nsqlookupd" }
+}
