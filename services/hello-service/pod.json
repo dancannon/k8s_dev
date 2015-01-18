@@ -1,16 +1,17 @@
 {
     "kind": "Pod",
     "apiVersion": "v1beta1",
-    "id": "app-hello-service",
+    "id": "hello-service",
     "desiredState": {
         "manifest": {
             "version": "v1beta1",
-            "id": "app-hello-service",
+            "id": "hello-service",
             "containers": [{
-                "name": "app-hello-service",
-                "image": "10.147.250.201:5000/app-hello-service",
+                "name": "hello-service",
+                "image": "10.0.149.109:5000/hello-service",
+                "imagePullPolicy": "PullAlways",
                 "ports": [{
-                    "name": "app-hello-service",
+                    "name": "hello-service",
                     "containerPort": 8080
                 }],
                 "command": ["--registry=kubernetes", "--bind_address=:8080"]
@@ -18,7 +19,7 @@
         }
     },
     "labels": {
-        "name": "app-hello-service",
-        "role": "app-service"
+        "name": "hello-service",
+        "role": "service"
     }
 }

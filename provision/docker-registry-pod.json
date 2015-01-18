@@ -17,6 +17,9 @@
                 "env": [{
                     "name": "GCS_BUCKET",
                     "value": "dancannon-docker-registry"
+                }, {
+                    "name": "GCP_OAUTH2_REFRESH_TOKEN",
+                    "value": "1/mi-FIxK740F9zK1dn8mPYXVw2LITRrTVIKPFHSABABw"
                 }]
             }]
         }

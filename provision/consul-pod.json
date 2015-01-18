@@ -30,7 +30,7 @@
                 "name": "consul8-disk",
                 "source": {
                     "persistentDisk": {
-                        "pdName": "consul8-disk",
+                        "pdName": "consul-disk",
                         "fsType": "ext4"
                     }
                 }

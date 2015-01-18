@@ -4,8 +4,8 @@ import (
 	"os"
 
 	"github.com/Sirupsen/logrus"
-	"github.com/asim/go-micro/server"
 	"github.com/codegangsta/cli"
+	"github.com/dancannon/go-micro/server"
 
 	"github.com/dancannon/k8s_dev/services/hello-service/handler"
 )
@@ -13,7 +13,7 @@ import (
 func main() {
 	app := cli.NewApp()
 
-	app.Name = "app-hello-service"
+	app.Name = "hello-service"
 	app.Version = "0.1.0"
 	app.Author = "Daniel Cannon"
 	app.Email = "daniel@danielcannon.co.uk"
@@ -35,6 +35,17 @@ func main() {
 			Name:  "verbose, v",
 			Usage: "sets log level to DEBUG",
 		},
+
+		cli.StringFlag{
+			Name:  "registry",
+			Value: "consul",
+			Usage: "registry for discovery. kubernetes, consul, etc",
+		},
+		cli.StringFlag{
+			Name:  "bind_address",
+			Value: ":0",
+			Usage: "bind address for the server. 127.0.0.1:8080",
+		},
 	}
 
 	app.Action = func(c *cli.Context) {
@@ -47,6 +58,11 @@ func main() {
 			logrus.SetFormatter(new(logrus.TextFormatter))
 		}
 
+		server.Registry = c.String("registry")
+		server.BindAddress = c.String("bind_address")
+		server.Name = "hello-service"
+		server.Init(true)
+
 		startServer()
 	}
 
@@ -54,8 +70,6 @@ func main() {
 }
 
 func startServer() {
-	server.Name = "app.service.hello"
-	server.Init()
 
 	// Register Handlers
 	server.Register(
@@ -71,6 +85,6 @@ func startServer() {
 func init() {
 	cli.VersionFlag = cli.BoolFlag{
 		Name:  "version",
-		Usage: "print the version",
+		Usage: "prints the version",
 	}
 }

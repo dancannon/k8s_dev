@@ -1,9 +1,10 @@
 {
-  "id": "template-service",
+  "id": "hello-api",
   "kind": "Service",
   "apiVersion": "v1beta1",
-  "port": 9091,
+  "port": 80,
   "containerPort": 8080,
-  "selector": { "name": "go.micro.service.template" },
-  "labels": { "name": "go.micro.service.template" }
+  "selector": { "name": "hello-api" },
+  "labels": { "name": "hello-api" },
+  "createExternalLoadBalancer": true
 }

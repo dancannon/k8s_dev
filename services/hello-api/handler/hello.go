@@ -1,15 +1,14 @@
 package handler
 
 import (
-	"github.com/asim/go-micro/client"
+	"github.com/dancannon/go-micro/client"
 	"github.com/gin-gonic/gin"
 
 	helloHelloPB "github.com/dancannon/k8s_dev/services/hello-service/proto/hello"
 )
 
 func Hello(c *gin.Context) {
-	// Create new request to service go.micro.service.go-template, method Example.Call
-	req := client.NewRequest("app.service.hello", "Hello.Call", &helloHelloPB.Request{
+	req := client.NewRequest("hello-service", "Hello.Call", &helloHelloPB.Request{
 		Name: c.Params.ByName("name"),
 	})
 

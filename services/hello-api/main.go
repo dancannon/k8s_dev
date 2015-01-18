@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/codegangsta/cli"
+	"github.com/dancannon/go-micro/server"
 	"github.com/gin-gonic/gin"
 
 	"github.com/dancannon/k8s_dev/services/hello-api/handler"
@@ -37,11 +37,15 @@ func main() {
 			Usage: "sets log level to DEBUG",
 		},
 
-		cli.IntFlag{
-			Name:   "port",
-			Value:  8080,
-			Usage:  "port the server will listen on",
-			EnvVar: "APP_PORT",
+		cli.StringFlag{
+			Name:  "registry",
+			Value: "consul",
+			Usage: "registry for discovery. kubernetes, consul, etc",
+		},
+		cli.StringFlag{
+			Name:  "bind_address",
+			Value: ":0",
+			Usage: "bind address for the server. 127.0.0.1:8080",
 		},
 	}
 
@@ -55,20 +59,24 @@ func main() {
 			logrus.SetFormatter(new(logrus.TextFormatter))
 		}
 
-		startServer(c.Int("port"))
+		server.Registry = c.String("registry")
+		server.BindAddress = c.String("bind_address")
+		server.Init(false)
+
+		startServer(c.String("bind_address"))
 	}
 
 	app.Run(os.Args)
 }
 
-func startServer(port int) {
+func startServer(addr string) {
 	server := gin.Default()
 
 	server.GET("/ping", handler.Ping)
 	server.GET("/hello/:name", handler.Hello)
 
 	// Run server
-	server.Run(fmt.Sprintf(":%d", port))
+	server.Run(addr)
 }
 
 func init() {

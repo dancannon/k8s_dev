@@ -5,7 +5,7 @@ import (
 
 	"code.google.com/p/go.net/context"
 	"github.com/Sirupsen/logrus"
-	"github.com/asim/go-micro/server"
+	"github.com/dancannon/go-micro/server"
 
 	helloHelloPB "github.com/dancannon/k8s_dev/services/hello-service/proto/hello"
 )
